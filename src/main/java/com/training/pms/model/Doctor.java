@@ -1,5 +1,6 @@
 package com.training.pms.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -21,7 +22,7 @@ public class Doctor {
 	private String password;
 	private String email;
 	private String city;
-	private List<String> patients_assigned;
+	private ArrayList<String> patientsAssigned;
 	private String specialty;
 	private int loginid;
 }

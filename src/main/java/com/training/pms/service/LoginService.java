@@ -1,6 +1,9 @@
 package com.training.pms.service;
 
+import java.util.List;
+
 import com.training.pms.model.Doctor;
+import com.training.pms.model.Login;
 import com.training.pms.model.Patient;
 
 public interface LoginService {
@@ -13,7 +16,7 @@ public interface LoginService {
 	
 	public boolean isLoginExists(int loginId);
 	
-	
+	public List<Login> getLogins();
 	// delete all logins
 	public String deleteLogins();
 	
