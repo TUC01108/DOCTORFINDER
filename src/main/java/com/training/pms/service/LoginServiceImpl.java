@@ -1,5 +1,6 @@
 package com.training.pms.service;
 
+import com.training.pms.model.Doctor;
 import com.training.pms.model.Patient;
 
 public class LoginServiceImpl implements LoginService {
