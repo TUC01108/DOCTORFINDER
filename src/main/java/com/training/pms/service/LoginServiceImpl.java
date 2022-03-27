@@ -57,6 +57,12 @@ public class LoginServiceImpl implements LoginService {
 		return (List<Login>) loginDAO.findAll();
 	}
 
+	@Override
+	public String addLogin(Login login) {
+		loginDAO.save(login);
+		return "Login saved successfully";
+	}
+
 	
 
 }

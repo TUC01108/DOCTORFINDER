@@ -20,4 +20,7 @@ public interface LoginService {
 	// delete all logins
 	public String deleteLogins();
 	
+	// add login (not full patient or doctor)
+	public String addLogin(Login login);
+	
 }
