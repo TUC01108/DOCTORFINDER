@@ -1,4 +1,4 @@
-/*
+
 package com.training.pms.security.config;
 
 import org.springframework.context.annotation.Bean;
@@ -49,4 +49,4 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	}
 
 }
-*/
+
