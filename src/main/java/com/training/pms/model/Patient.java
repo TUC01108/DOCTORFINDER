@@ -84,6 +84,12 @@ public class Patient implements UserDetails {
 		this.locked = locked;
 		this.enabled = enabled;
 	}
+	public Patient(String name, String email, String password) {
+		this.name = name;
+		this.email = email;
+		this.password = password;
+	}
+	
 	
 	
 }

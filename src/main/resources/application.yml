@@ -1,5 +1,6 @@
 
 server:
+  address: 127.0.0.1
   error:
     include-message: always
     include-binding-errors: always
