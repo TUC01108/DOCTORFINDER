@@ -16,11 +16,9 @@ public class Doctor {
 	
 	@Id
 	private int doctorid;
-	private String firsname;
-	private String lastname;
-	private String username;
-	private String password;
+	private String name;
 	private String email;
+	private String password;
 	private String city;
 	private ArrayList<String> patientsAssigned;
 	private String specialty;

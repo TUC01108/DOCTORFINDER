@@ -13,7 +13,7 @@ public interface PatientService {
 	public String deletePatient();
 	public String deletePatient(int patientId);
 	
-	public List<Patient> getPatientByName(String patientName);
+	public List<Patient> getPatientByName(String name);
 	public List<Patient> getPatientByBillAmountRange(int lowerAmount, int upperAmount);
 	
 }

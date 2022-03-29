@@ -7,12 +7,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.training.pms.model.Login;
+import com.training.pms.model.RegistrationRequest;
 import com.training.pms.service.LoginService;
 
 @RestController
@@ -24,7 +26,7 @@ public class LoginController {
 	LoginService loginService;
 	
 	@GetMapping
-	public ResponseEntity<List<Login>> getLogins() {			//localhost:5050/product		-GET
+	public ResponseEntity<List<Login>> getLogins() {			//localhost:5050/login		-GET
 		ResponseEntity<List<Login>> responseEntity = null;
 		List<Login> result = null;
 		if(loginService.getLogins().equals(null)) {
@@ -36,6 +38,22 @@ public class LoginController {
 		}
 		return responseEntity;
 		// return "Getting all the logins";
+	}
+	
+	// Get one login by id
+	@GetMapping("{loginid}")
+	public ResponseEntity<Login> getLogin(@PathVariable("loginid")int loginid) 		//localhost:5050/login/single		-GET
+	{		
+		ResponseEntity<Login> responseEntity = null;
+		Login login = new Login();
+		if (loginService.isLoginExists(loginid)) 
+		{
+			login = loginService.getLogin(loginid);
+			responseEntity = new ResponseEntity<Login>(login, HttpStatus.OK);
+		} else {
+			responseEntity = new ResponseEntity<Login>(login, HttpStatus.NO_CONTENT);
+		}
+		return responseEntity;
 	}
 	
 	@PostMapping
@@ -51,4 +69,11 @@ public class LoginController {
 		}
 		return responseEntity;
 	}
+	/*
+	@PostMapping
+	public String register(@RequestBody RegistrationRequest request) {
+		return loginService.registerPatient(request);
+	}
+	*/
+	
 }

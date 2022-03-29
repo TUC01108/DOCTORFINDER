@@ -13,7 +13,7 @@ public class Login {
 	
 	@Id
 	private int loginid;
-	private String Username;
+	private String username;
 	private String password;
 
 }
