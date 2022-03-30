@@ -13,7 +13,5 @@ import com.training.pms.model.Patient;
 public interface PatientDAO extends CrudRepository<Patient, Integer> {
 	List<Patient>  findByBillAmountBetween(int lowerAmount,int upperAmount);
 	List<Patient> findByName(String name);
-	
-	@Transactional(readOnly = true)
-	Optional<Patient> findByEmail(String email);
+
 }

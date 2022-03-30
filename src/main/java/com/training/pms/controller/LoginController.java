@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.training.pms.model.Login;
-import com.training.pms.model.RegistrationRequest;
 import com.training.pms.service.LoginService;
+import com.training.pms.service.LoginServiceImpl;
 
 @RestController
 @RequestMapping("login")
@@ -24,6 +24,7 @@ public class LoginController {
 	
 	@Autowired
 	LoginService loginService;
+	LoginServiceImpl loginServiceImpl;
 	
 	@GetMapping
 	public ResponseEntity<List<Login>> getLogins() {			//localhost:5050/login		-GET
@@ -39,6 +40,7 @@ public class LoginController {
 		return responseEntity;
 		// return "Getting all the logins";
 	}
+	
 	
 	// Get one login by id
 	@GetMapping("{loginid}")

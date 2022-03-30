@@ -4,9 +4,6 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,11 +16,10 @@ import lombok.AllArgsConstructor;
 @Service		//spring will create a bean and treats this as service
 @Transactional
 @AllArgsConstructor
-public class PatientServiceImpl implements PatientService, UserDetailsService {
+public class PatientServiceImpl implements PatientService {
 
 	@Autowired
 	private final PatientDAO patientDao;
-	private final static String USER_NOT_FOUND_MSG = "user with email %s not found";
 	
 	@Override
 	@Transactional
@@ -90,13 +86,6 @@ public class PatientServiceImpl implements PatientService, UserDetailsService {
 	return patientDao.findByBillAmountBetween(lowerAmount, upperAmount);
 	}
 	
-	@Override
-	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-		// TODO Auto-generated method stub
-		return patientDao.findByEmail(email)
-				.orElseThrow(()-> new UsernameNotFoundException(String.format(USER_NOT_FOUND_MSG, email)));
-	}
-
 	
 
 }

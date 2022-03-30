@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.training.pms.dao.LoginDAO;
@@ -12,7 +11,6 @@ import com.training.pms.dao.PatientDAO;
 import com.training.pms.model.Doctor;
 import com.training.pms.model.Login;
 import com.training.pms.model.Patient;
-import com.training.pms.model.RegistrationRequest;
 
 @Service
 public class LoginServiceImpl implements LoginService {
@@ -20,7 +18,7 @@ public class LoginServiceImpl implements LoginService {
 	@Autowired
 	LoginDAO loginDAO;
 	PatientDAO patientDAO;
-	private final BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+	//private final BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
 	@Override
 	public String validatePatient(String username, String password) {
@@ -35,9 +33,9 @@ public class LoginServiceImpl implements LoginService {
 			throw new IllegalStateException("login id already taken");
 		}
 		
-		String encodedPassword = bCryptPasswordEncoder.encode(login.getPassword());
+		//String encodedPassword = bCryptPasswordEncoder.encode(login.getPassword());
 		
-		login.setPassword(encodedPassword);
+		login.setPassword(login.getPassword());
 		
 		loginDAO.save(login);
 		
@@ -46,14 +44,14 @@ public class LoginServiceImpl implements LoginService {
 	
 	@Override
 	public String registerPatient(Patient patient) {
-		boolean loginExists = patientDAO.findById(patient.getLoginId()).isPresent();
+		boolean loginExists = patientDAO.findById(patient.getLoginid()).isPresent();
 		if (loginExists) {
 			throw new IllegalStateException("user id already taken");
 		}
 		
-		String encodedPassword = bCryptPasswordEncoder.encode(patient.getPassword());
+		//String encodedPassword = bCryptPasswordEncoder.encode(patient.getPassword());
 		
-		patient.setPassword(encodedPassword);
+		patient.setPassword(patient.getPassword());
 		
 		patientDAO.save(patient);
 		
@@ -106,6 +104,7 @@ public class LoginServiceImpl implements LoginService {
 		Optional<Login> login = loginDAO.findById(loginid);
 		return login.get();
 	}
+
 
 
 	

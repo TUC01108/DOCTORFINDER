@@ -2,22 +2,26 @@ package com.training.pms.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.training.pms.dao.BillDAO;
 import com.training.pms.model.Bill;
 
 @Service
 public class BillServiceImpl implements BillService {
+	
+	@Autowired
+	BillDAO billDAO;
 
 	@Override
 	public List<Bill> getBills() {
-		// TODO Auto-generated method stub
-		return null;
+		return (List<Bill>) billDAO.findAll();
 	}
 
 	@Override
 	public String addBill(Bill bill) {
-		// TODO Auto-generated method stub
+		billDAO.save(bill);
 		return "it works for bills";
 	}
 
