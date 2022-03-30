@@ -71,4 +71,6 @@ public class PatientController {
 		return "Returning all the patients by bill amount between : "+lowerAmount+ " and "+upperAmount;
 	}
 	
+	// search patients by doctorName
+	
 }

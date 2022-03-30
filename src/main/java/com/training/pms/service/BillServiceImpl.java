@@ -30,5 +30,7 @@ public class BillServiceImpl implements BillService {
 		// TODO Auto-generated method stub
 		return false;
 	}
+	
+	//getBillByPatientid
 
 }
