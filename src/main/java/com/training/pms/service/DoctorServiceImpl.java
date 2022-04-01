@@ -5,7 +5,6 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.training.pms.dao.DoctorDAO;
 import com.training.pms.model.Doctor;
@@ -79,8 +78,8 @@ public class DoctorServiceImpl implements DoctorService{
 	}
 
 	@Override
-	@Transactional
-	public List<Doctor> getDoctorBySpecailty(String specialty) {
+	//@Transactional
+	public List<Doctor> getDoctorBySpecialty(String specialty) {
 		return doctorDAO.findDoctorBySpecialty(specialty);
 	}
 

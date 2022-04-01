@@ -16,5 +16,6 @@ public interface DoctorService {
 	
 	//public List<Doctor> patientsAssigned(String patients);
 	public List<Doctor> getDoctorByName(String doctorname);
-	public List<Doctor> getDoctorBySpecailty(String specialty);
+	public List<Doctor> getDoctorBySpecialty(String specialty);
+	// approveRejectAppointment
 }

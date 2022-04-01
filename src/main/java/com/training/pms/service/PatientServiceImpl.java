@@ -85,6 +85,10 @@ public class PatientServiceImpl implements PatientService {
 	// TODO Auto-generated method stub
 	return patientDao.findByBillAmountBetween(lowerAmount, upperAmount);
 	}
+	@Override
+	public List<Patient> getPatientByDoctorAssigned(String doctorAssigned) {
+		return (List<Patient>) patientDao.findByDoctorAssigned(doctorAssigned);
+	}
 	
 	
 

@@ -15,5 +15,6 @@ public interface PatientService {
 	
 	public List<Patient> getPatientByName(String name);
 	public List<Patient> getPatientByBillAmountRange(int lowerAmount, int upperAmount);
+	public List<Patient> getPatientByDoctorAssigned(String doctorAssigned);
 	
 }

@@ -35,6 +35,7 @@ public class Appointment {
 	private String symptom;
 	private int patientid;
 	private int doctorid;
+	private Boolean status = false;
 	
 	public Appointment(Date date, String symptom, int patientid, int doctorid) {
 		this.date = date;
@@ -47,6 +48,13 @@ public class Appointment {
 		this.date = date;
 		this.symptom = symptom;
 	}
+
+	public Appointment(Date date, String symptom, int patientid) {
+		this.date = date;
+		this.symptom = symptom;
+		this.patientid = patientid;
+	}
+	
 	
 	
 	

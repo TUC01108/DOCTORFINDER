@@ -71,6 +71,18 @@ public class PatientController {
 		return "Returning all the patients by bill amount between : "+lowerAmount+ " and "+upperAmount;
 	}
 	
+	@GetMapping("getPatientByDoctorAssigned/{doctorAssigned}")
+	public ResponseEntity<List<Patient>> getPatientByDoctorAssigned(@PathVariable("doctorAssigned")String doctorAssigned) {    //localhost:5050/patient/getPatientByDoctorAssigned/Nick
+		List<Patient> result = patientService.getPatientByDoctorAssigned(doctorAssigned);
+		ResponseEntity<List<Patient>> responseEntity = null;
+		if (result.size() == 0) {
+			responseEntity = new ResponseEntity<List<Patient>>(result,HttpStatus.NO_CONTENT);
+		} else {
+			responseEntity = new ResponseEntity<List<Patient>>(result,HttpStatus.OK);
+		}
+		return responseEntity;
+	}
+	
 	// search patients by doctorName
 	
 }

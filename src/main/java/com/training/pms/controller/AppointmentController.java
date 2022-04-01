@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,15 +41,25 @@ public class AppointmentController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<String> saveLogin(@RequestBody Appointment appointment) {			//localhost:5050/appointment			-POST
+	public ResponseEntity<String> saveAppointment(@RequestBody Appointment appointment) {			//localhost:5050/appointment			-POST
 		ResponseEntity<String> responseEntity = null;
 		String result = null;
-		if (appointmentService.isAppointmentExists(appointment.getAppointmentid())) {
-			result = "Appointment with appointment id :" + appointment.getAppointmentid() + " already exists";
-			responseEntity = new ResponseEntity<String>(result, HttpStatus.OK);
-		} else {
+		
 			result = appointmentService.addAppointment(appointment);
 			responseEntity = new ResponseEntity<String>(result, HttpStatus.CREATED);
+		return responseEntity;
+	}
+	
+	@DeleteMapping("{appointmentid}")
+	public ResponseEntity<String> deleteAppointment(@PathVariable("appointmentid")int appointmentid) {		//localhost:5050/product		-DELETE
+		ResponseEntity<String> responseEntity = null;
+		String result = null;
+		if (appointmentService.isAppointmentExists(appointmentid)) {
+			result = appointmentService.deleteAppointment(appointmentid);
+			responseEntity = new ResponseEntity<String>(result, HttpStatus.OK);
+		} else {
+			result = "Appointment with appointment id :" + appointmentid + " does not exist";
+			responseEntity = new ResponseEntity<String>(result, HttpStatus.NOT_FOUND);
 		}
 		return responseEntity;
 	}

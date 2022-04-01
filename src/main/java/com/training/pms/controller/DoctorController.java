@@ -61,7 +61,7 @@ public class DoctorController {
 		String result = null;
 		if(doctorService.doesDoctorExist(doctor.getDoctorid())) {
 			result = doctorService.updateDoctor(doctorid, doctor);
-			responseEntity = new ResponseEntity<String>(result,HttpStatus.ALREADY_REPORTED);
+			responseEntity = new ResponseEntity<String>(result,HttpStatus.OK);
 		}else {
 			result = "Doctor with the ID of: "+doctor.getDoctorid()+" was not found in the system";
 			responseEntity = new ResponseEntity<String>(result,HttpStatus.NOT_FOUND);
@@ -128,9 +128,9 @@ public class DoctorController {
 		return responseEntity;
 	}
 	//Search Doctor By Specialty
-	@GetMapping("searchDoctorBySpecialty{specialty}")
-	public ResponseEntity<List<Doctor>> getDoctorBySpecailty(@PathVariable String specialty) {
-		List<Doctor> result = doctorService.getDoctorBySpecailty(specialty);
+	@GetMapping("searchDoctorBySpecialty/{specialty}")
+	public ResponseEntity<List<Doctor>> getDoctorBySpecailty(@PathVariable("specialty") String specialty) {
+		List<Doctor> result = doctorService.getDoctorBySpecialty(specialty);
 		ResponseEntity<List<Doctor>> responseEntity = null;
 		if(result.size() == 0) {
 			responseEntity = new ResponseEntity<List<Doctor>>(result,HttpStatus.NO_CONTENT);

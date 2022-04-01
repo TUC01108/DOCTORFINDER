@@ -36,6 +36,7 @@ public class Patient {
 	private String doctorAssigned;
 	private int billAmount;
 	private int loginid;
+	private int doctorid;
 	//private Boolean locked = false;
 	//private Boolean enabled = true;
 	
@@ -80,6 +81,19 @@ public class Patient {
 		this.billAmount = billAmount;
 		this.loginid = loginId;
 	}
+	public Patient(String name, String email, String password, String city, String symptom, String doctorAssigned,
+			int billAmount, int doctorid) {
+		this.name = name;
+		this.email = email;
+		this.password = password;
+		this.city = city;
+		this.symptom = symptom;
+		this.doctorAssigned = doctorAssigned;
+		this.billAmount = billAmount;
+		this.doctorid = doctorid;
+	}
+	
+	
 	
 	
 	
