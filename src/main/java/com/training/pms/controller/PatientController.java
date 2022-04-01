@@ -39,32 +39,50 @@ public class PatientController {
 		}
 		return responseEntity;
 	}
-	@GetMapping("{patientId}")
-	public String getPatient(@PathVariable("patientId")int patientId) {    //localhost:5050/patient/1090   -GET
-		return "Getting a single patient by patientId : "+patientId;
+	@GetMapping("{patientid}")
+	public ResponseEntity<Patient> getPatient(@PathVariable("patientid")int patientid) {    //localhost:5050/patient/1090   -GET
+		ResponseEntity<Patient> responseEntity = null;
+	     Patient patient = new Patient();
+	     if (patientService.isPatientExists(patientid)){
+	    	 patient = patientService.getPatient(patientid);
+	         responseEntity = new ResponseEntity<Patient>(patient, HttpStatus.OK);
+	     }else {
+	         responseEntity = new ResponseEntity<Patient>(patient , HttpStatus.NO_CONTENT);
+	     }
+	     return responseEntity;
 	}
-	@PostMapping
-	public ResponseEntity<String> savePatient(@RequestBody Patient patient) {    //localhost:5050/patient  -POST
+
+	@PutMapping("{patientid}")
+	public ResponseEntity<String> updatePatient(@PathVariable("patientid")int patientid,
+			@RequestBody Patient patient) {    //localhost:5050/patient/1090  -PUT
+			ResponseEntity<String> responseEntity = null;
+			String result = null;
+			if(patientService.isPatientExists(patient.getPatientid())) {
+				result = patientService.updatePatient(patientid, patient);
+				responseEntity = new ResponseEntity<String>(result,HttpStatus.ALREADY_REPORTED);
+			}else {
+				result = "Patient with the ID of: "+patient.getPatientid()+" was not found in the system";
+				responseEntity = new ResponseEntity<String>(result,HttpStatus.NOT_FOUND);
+			}
+			return responseEntity;
+	}
+  
+  	@PostMapping
+	public ResponseEntity<String> savePatient(@RequestBody Patient patient) {    //localhost:5050/patient  -POST 
 		ResponseEntity<String> responseEntity = null;
 		String result = null;
-		if (patientService.isPatientExists(patient.getPatientid())) {
-			result = "Patient with patient id :" + patient.getPatientid() + " already exists";
-			responseEntity = new ResponseEntity<String>(result, HttpStatus.OK);
-		} else {
+		if(patientService.isPatientExists(patient.getPatientid())) {
+			result = "Doctor with the ID of "+patient.getPatientid()+" Already In The System";;
+			responseEntity = new ResponseEntity<String>(result,HttpStatus.ALREADY_REPORTED);
+		}else {
 			result = patientService.addPatient(patient);
-			responseEntity = new ResponseEntity<String>(result, HttpStatus.CREATED);
+			responseEntity = new ResponseEntity<String>(result,HttpStatus.NOT_FOUND);
 		}
 		return responseEntity;
 	}
-	
-	@PutMapping("{patientId}")
-	public String updatePatient(@PathVariable("patientId")int patientId,
-			@RequestBody Patient patient) {    //localhost:5050/patient/1090  -PUT
-		return "Updating a single patient with "+patientId+ " and the changes are: "+patient;
-	}
-	@DeleteMapping("{patientId}")
-	public String deletePatient(@PathVariable("patientId")int patientId) {    //localhost:5050/patient/1090  -DELETE
-		return "Deleting a single patient by patienttId: "+patientId;
+	@DeleteMapping("{patientid}")
+	public String deletePatient(@PathVariable("patientid")int patientid) {    //localhost:5050/patient/1090  -DELETE
+		return "Deleting a single patient by patienttId: "+patientid;
 	}
 	@GetMapping("getPatientsByBillAmount/{lowerAmount}/{upperAmount}")
 	public String getPatientsByBillAmount(@PathVariable("lowerAmount")int lowerAmount, @PathVariable("upperAmount")int upperAmount) {    //localhost:5050/patients/getPatientsByBillAmount/199/to/400

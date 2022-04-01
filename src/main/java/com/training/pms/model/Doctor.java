@@ -36,7 +36,7 @@ public class Doctor {
 	private String email;
 	private String password;
 	private String city;
-	private ArrayList<String> patientsAssigned;
+	//private ArrayList<String> patientsAssigned;
 	private String specialty;
 	private int loginid;
 	
