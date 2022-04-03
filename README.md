@@ -41,19 +41,19 @@ To-do list:
 
 ## Getting Started
 
-git remote add origin https://github.com/TUC01108/DOCTORFINDER
-git clone https://github.com/TUC01108/DOCTORFINDER.git
+* git remote add origin https://github.com/TUC01108/DOCTORFINDER
+* git clone https://github.com/TUC01108/DOCTORFINDER.git
 
-Eclipse- Backend
-VSCode- Frontend
-DBeaver- Database
-Postman- HTTP
+* Eclipse- Backend
+* VSCode- Frontend
+* DBeaver- Database
+* Postman- HTTP
 
-Backend
+Backend-
 Start server in Eclipse by right clicking on project and selecting >Run as>Spring Boot App.
 Default is port 5050
 
-Frontend
+Frontend-
 Install dependencies for project with npm install
 Start server in VsCode with npm start
 Default is 4200
